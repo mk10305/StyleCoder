@@ -1,0 +1,185 @@
+<div class="container">
+  <div class="row">
+
+   <div class="col-md-4">
+    <div class="jumbotron form_text">
+      <h1>Create a Digital Repository of your Clothes!  <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></h1>
+      <p>Enter information about a clothing item in the form.</p>
+
+    </div>
+  </div>
+
+
+  <div class="col-md-6 col-md-offset-2 form_container">
+
+    <%= form_for(@item) do |f| %>
+    <fieldset>
+      <legend> Add an Item to your Virtual Closet </legend>
+      <% if @item.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+        <ul>
+          <% @item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <div class="field">
+              <%= f.label :name , :class=>'control-label'%><br>
+              <%= f.text_field :name, :class=>'form-control input-md'  %>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <%= f.label :cost , :class=>'control-label'%><br>
+            <%= f.text_field :cost, :class=>'form-control input-md'  %>
+          </div>
+        </div>
+
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <%= f.label :image , :class=>'control-label'%><br>
+            <%= f.text_field :image, :class=>'form-control input-md' %>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label class=" control-label" for="radios">Fit</label>
+            <div class="radios">
+             <%= f.radio_button :fit, "perfect"%>
+             <%= f.label :contactmethod, 'Perfect', :value => 'perfect' %>
+             <br>
+             <%= f.radio_button :fit, "loose"%>
+             <%= f.label :contactmethod, 'Loose', :value => 'loose' %>
+             <br>
+             <%= f.radio_button :fit, "tight"%>
+             <%= f.label :contactmethod, 'Tight', :value => 'tight' %>
+           </div>
+         </div>
+       </div>
+
+       <div class="col-sm-4">
+        <div class="form-group">
+          <label class=" control-label" for="radios">Season</label>
+          <div class="radios">
+           <%= f.radio_button :season, "autumn"%>
+           <%= f.label :contactmethod, 'Autumn', :value => 'autumn' %>
+           <br>
+           <%= f.radio_button :season, "winter"%>
+           <%= f.label :contactmethod, 'Winter', :value => 'winter' %>
+           <br>
+           <%= f.radio_button :season, "spring"%>
+           <%= f.label :contactmethod, 'Spring', :value => 'spring' %>
+           <br>
+           <%= f.radio_button :season, "summer"%>
+           <%= f.label :contactmethod, 'Summer', :value => 'summer' %>
+         </div>
+       </div>
+     </div>
+
+
+
+
+     <div class="col-sm-4">
+      <div class="form-group">
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= f.label :colors, "Colors", class: 'col-sm-2 control-label' %>
+  <div class="col-sm-10">
+
+    <%= f.select(:colors, options_from_collection_for_select(@color,'id','name'), multiple: "multiple" ) %>
+
+
+
+
+
+          </div>
+        </div>
+
+        
+
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :notes , :class=>'control-label'%><br>
+          <%= f.text_field :notes, :class=>'form-control input-md'  %>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= f.label :description , :class=>'control-label'%><br>
+        <%= f.text_field :description, :class=>'form-control input-md'  %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label class=" control-label" for="checkboxes">Occasion</label>
+      <div class="checkbox">
+        <label for="checkboxes-0">
+          <input name="checkboxes" id="checkboxes-0" value="1" type="checkbox">
+          Everyday
+        </label>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  <div class="form-group">
+   <%= f.submit %>
+ </div>
+ 
+
+
+
+
+
+</fieldset>
+<% end %>
+
+</div>
+
+
+
+
+
+</div>
+
+</div><!-- /.container -->

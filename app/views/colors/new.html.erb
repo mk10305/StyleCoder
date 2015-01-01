@@ -1,0 +1,38 @@
+
+<%= render 'layouts/nav' %>
+
+<div class="container">
+
+     <div class= "row">
+      <div class= "col-md-12">
+        <div class="page-header">
+          <h1>Add a Color
+           <small>
+            <%= link_to colors_path, class: "" do %>
+          <span class="glyphicon glyphicon-cog"></span> Color Manager
+          <% end %>
+           </small>
+         </h1>
+       </div>
+     </div>
+   </div>
+
+
+  <div class="row">
+
+
+    <div class="col-md-6">
+    
+<%= render 'form' %>
+
+    </div>
+
+  </div>
+
+</div><!-- /.container -->
+
+
+<footer class="footer">
+
+
+</footer> 

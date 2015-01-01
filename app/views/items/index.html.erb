@@ -1,0 +1,207 @@
+  <%= render 'layouts/nav' %>
+
+<div class="container">
+  <div class= "row">
+    <div class= "col-md-12">
+      <div class="page-header">
+        <h1>Username's Closet <a class="" href= "#"> <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
+          <span class="page-header-sub-text">Add Item </span> </a>  <br/> <small>(Active Filter: Category Blue) </small></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="filters" class= "centered-pills">
+    <ul class="nav nav-pills">
+
+      <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+          Category <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu" data-filter-group="color">
+          <li role="presentation" class= "item is-checked" data-filter=""><a role="menuitem" tabindex="-1" href="#">Any</a></li> 
+          <li role="presentation" class= "item" data-filter=".red"><a role="menuitem" tabindex="-1" href="#">Red</a></li>
+          <li role="presentation" class="item" data-filter=".blue"><a role="menuitem" tabindex="-1" href="#">Blue</a></li>
+          <li role="presentation" class= "item" data-filter=".yellow"><a role="menuitem" tabindex="-1" href="#">Yellow</a></li>
+        </ul>
+      </li>
+
+      <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+          Season <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu" data-filter-group="color">
+          <li role="presentation" class= "item is-checked" data-filter=""><a role="menuitem" tabindex="-1" href="#">Any</a></li> 
+          <li role="presentation" class= "item" data-filter=".red"><a role="menuitem" tabindex="-1" href="#">Red</a></li>
+          <li role="presentation" class="item" data-filter=".blue"><a role="menuitem" tabindex="-1" href="#">Blue</a></li>
+          <li role="presentation" class= "item" data-filter=".yellow"><a role="menuitem" tabindex="-1" href="#">Yellow</a></li>
+        </ul>
+      </li>
+
+
+      <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+          Color <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu" data-filter-group="color">
+          <li role="presentation" class= "item" data-filter=".red"><a role="menuitem" tabindex="-1" href="#"><%= link_to 'Manage Colors', new_color_path , 'data-no-turbolink'=>true %> </a></li>
+          <li role="presentation" class="item" data-filter=".blue"><a role="menuitem" tabindex="-1" href="#">Blue</a></li>
+          <li role="presentation" class= "item" data-filter=".yellow"><a role="menuitem" tabindex="-1" href="#">Yellow</a></li>
+        </ul>
+      </li>
+
+
+
+      <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+          Occassion <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu" data-filter-group="color">
+          <li role="presentation" class= "item is-checked" data-filter=""><a role="menuitem" tabindex="-1" href="#">Any</a></li> 
+          <li role="presentation" class= "item" data-filter=".red"><a role="menuitem" tabindex="-1" href="#">Red</a></li>
+          <li role="presentation" class="item" data-filter=".blue"><a role="menuitem" tabindex="-1" href="#">Blue</a></li>
+          <li role="presentation" class= "item" data-filter=".yellow"><a role="menuitem" tabindex="-1" href="#">Yellow</a></li>
+        </ul>
+      </li>
+
+
+
+    </ul>
+  </div>
+  
+
+
+  <div id="grid">
+
+    <div id="closet">
+
+      <div class="closet_item red">
+       <%= image_tag("red_1.jpg", :alt => "red_1.jpg") %>
+
+     </div>
+
+     <div class="closet_item">
+      <%= image_tag("red_2.jpg", :alt => "red_2.jpg") %>
+    </div>
+
+    <div class="closet_item">
+     <%= image_tag("red_3.jpg", :alt => "red_1.jpg") %>
+   </div>
+
+   <div class="closet_item">
+    <%= image_tag("red_4.jpg", :alt => "red_4.jpg") %>
+  </div>
+
+  <div class="closet_item cs2">
+    <%= image_tag("red_5.jpg", :alt => "red_5.jpg") %>
+  </div>
+
+  <div class="closet_item">
+    <%= image_tag("red_6.jpeg", :alt => "red_6.jpeg") %>
+    <!-- Use <br> <br>  <strong>Title Goes Here</strong><br> -->
+  </div>
+
+</div>
+
+
+</div>
+
+
+
+<footer class="footer">
+
+</footer> 
+
+
+<!-- Latest compiled and minified JavaScript -->
+
+
+
+
+
+<script>
+
+$( function() {
+
+  var $container = $('#closet').isotope({
+    itemSelector: '.closet_item',
+  });
+
+  // store filter for each group
+  var filters = {};
+
+  $('#filters').on( 'click', '.item', function() {
+    var $this = $(this);
+    // get group key
+    var $buttonGroup = $this.parents('.button-group');
+    var filterGroup = $buttonGroup.attr('data-filter-group');
+    // set filter for group
+    filters[ filterGroup ] = $this.attr('data-filter');
+    // combine filters
+    var filterValue = '';
+    for ( var prop in filters ) {
+      filterValue += filters[ prop ];
+    }
+    // set filter for Isotope
+    $container.isotope({ filter: filterValue });
+  });
+
+  // change is-checked class on buttons
+  $('.button-group').each( function( i, buttonGroup ) {
+    var $buttonGroup = $( buttonGroup );
+    $buttonGroup.on( 'click', 'button', function() {
+      $buttonGroup.find('.is-checked').removeClass('is-checked');
+      $( this ).addClass('is-checked');
+    });
+  });
+  
+});
+
+</script>
+
+<script>
+/*Dynamic Footer*/
+var bumpIt = function() {
+  $('body').css('margin-bottom', $('.footer').height());
+},
+didResize = false;
+
+bumpIt();
+
+$(window).resize(function() {
+  didResize = true;
+});
+setInterval(function() {
+  if(didResize) {
+    didResize = false;
+    bumpIt();
+  }
+}, 250);
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

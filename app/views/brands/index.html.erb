@@ -1,0 +1,70 @@
+<%= render 'layouts/nav' %>
+
+
+<div class ="container">
+  <div class= "row">
+    <div class= "col-md-12">
+      <div class="page-header">
+        <h1>Brand Manager
+         <small>
+
+          <%= link_to new_brand_path, class: "" do %>
+          <span class="glyphicon glyphicon-plus-sign"></span> Add a Brand
+          <% end %>
+
+        </small>
+      </h1>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+
+ <div class="col-md-6">
+
+<div class="table-responsive">
+<table class="table table-striped">
+
+  <% @brands.each do |brand| %>
+<tr>
+  <td>
+<%= brand.name %> 
+
+  </td>
+  <td class="table-icons">
+     <%= link_to edit_brand_path(brand), class: "" do %>
+          <span class="glyphicon glyphicon-pencil"></span> 
+          <% end %> 
+     <%= link_to brand, method: :delete, data: { confirm: 'Are you sure?' }, class: "" do %>
+          <span class="glyphicon glyphicon-trash"></span> 
+           <% end %> 
+
+  </td>
+</tr>
+ <% end %> 
+</table>
+</div>
+
+
+
+</div>
+
+<div class="col-md-6">
+  Graph
+</div>
+
+
+
+</div>
+
+</div>
+
+
+
+<footer class="footer">
+
+
+</footer> 
+
+

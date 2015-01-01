@@ -1,0 +1,48 @@
+<%= render 'layouts/nav' %>
+
+
+<div class ="container">
+  <div class= "row">
+    <div class= "col-md-12">
+      <div class="page-header">
+        <h1>Retailer Manager
+         <small>
+
+          <%= link_to new_retailer_path, class: "" do %>
+          <span class="glyphicon glyphicon-plus-sign"></span> Add a Retailer
+          <% end %>
+
+        </small>
+      </h1>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+
+ <div class="col-md-6">
+
+<div class="table-responsive">
+<table class="table table-striped">
+
+  <% @retailers.each do |retailer| %>
+<tr>
+  <td>
+<%= retailer.name %> 
+
+  </td>
+  <td class="table-icons">
+     <%= link_to edit_retailer_path(retailer), class: "" do %>
+          <span class="glyphicon glyphicon-pencil"></span> 
+          <% end %> 
+     <%= link_to retailer, method: :delete, data: { confirm: 'Are you sure?' }, class: "" do %>
+          <span class="glyphicon glyphicon-trash"></span> 
+           <% end %> 
+
+  </td>
+</tr>
+ <% end %> 
+</table>
+</div>
+

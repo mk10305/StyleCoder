@@ -1,0 +1,107 @@
+
+<%= render 'layouts/nav' %>
+
+
+<div class ="container">
+  <div class= "row">
+    <div class= "col-md-12">
+      <div class="page-header">
+        <h1>Color Manager
+         <small>
+
+          <%= link_to new_color_path, class: "" do %>
+          <span class="glyphicon glyphicon-plus-sign"></span> Add a color
+          <% end %>
+
+        </small>
+      </h1>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+
+ <div class="col-md-6">
+
+<div class="table-responsive">
+<table class="table table-striped">
+
+  <% @colors.each do |color| %>
+<tr>
+  <td>
+<%= color.name %> 
+
+  </td>
+  <td class="table-icons">
+     <%= link_to edit_color_path(color), class: "" do %>
+          <span class="glyphicon glyphicon-pencil"></span> 
+          <% end %> 
+     <%= link_to color, method: :delete, data: { confirm: 'Are you sure?' }, class: "" do %>
+          <span class="glyphicon glyphicon-trash"></span> 
+           <% end %> 
+
+  </td>
+</tr>
+ <% end %> 
+</table>
+</div>
+</div>
+
+  <div id="container" class="col-md-6" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto">
+  </div>
+</div>
+</div>
+
+<footer class="footer">
+
+
+</footer> 
+
+
+<script>
+$(function () {
+
+    $(document).ready(function () {
+
+        // Build the chart
+        $('#container').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: 'Breakdown of Closet by Color'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                data: [
+                    ['Orange',   45.0],
+                    ['Pink',       26.8],
+                    
+                    ['Green',    8.5],
+                    ['Yellow',     6.2],
+                    ['Pink',   0.7]
+                ]
+            }]
+        });
+    });
+
+});
+
+</script>

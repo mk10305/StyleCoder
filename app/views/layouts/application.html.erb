@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<% klass = "" 
+ 
+ if params[:controller] == 'items' && params[:action] == 'new' 
+  klass = "class='full_form'" 
+ elsif params[:controller] == 'sessions' && params[:action] == 'new' || params[:controller] == 'users' && params[:action] == 'new'
+  klass = "class='full'"
+else
+  klass= "class=''"
+end
+%>
+<html <%= klass.html_safe %> >
+<head>
+  <title>StyleCoder</title>
+ 
+ <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Style Coder </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+  <link href='http://fonts.googleapis.com/css?family=Cabin|Lobster' rel='stylesheet' type='text/css'>
+
+  <!-- Custom CSS -->
+ <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+
+  <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+</body>
+</html>
