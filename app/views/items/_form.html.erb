@@ -110,7 +110,9 @@
 
    <div class="col-sm-4">
     <div class="form-group">
-  <%= render 'colors_fields' %>
+<%= f.fields_for :colors do |builder| %>
+ <%= render  "colors_fields", :f => builder %>
+ <% end %>
    </div>
  </div>
 

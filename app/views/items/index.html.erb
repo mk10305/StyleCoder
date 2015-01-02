@@ -4,8 +4,15 @@
   <div class= "row">
     <div class= "col-md-12">
       <div class="page-header">
-        <h1>Username's Closet <a class="" href= "#"> <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
-          <span class="page-header-sub-text">Add Item </span> </a>  <br/> <small>(Active Filter: Category Blue) </small></h1>
+        <h1>Color Manager
+         <small>
+
+          <%= link_to new_item_path, class: "" do %>
+          <span class="glyphicon glyphicon-plus-sign"></span> Add an Item
+          <% end %>
+
+        </small>
+
         </div>
       </div>
     </div>
