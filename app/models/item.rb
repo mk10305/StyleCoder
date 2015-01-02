@@ -9,4 +9,7 @@ class Item < ActiveRecord::Base
   has_many :brands, :through => :itembrands
   has_many :itemretailers
   has_many :retailers, :through => :itemretailers
+
+
+    attr_accessible :colors, :colors_attributes
 end
