@@ -11,5 +11,5 @@ class Item < ActiveRecord::Base
   has_many :retailers, :through => :itemretailers
 
 
-    attr_accessible :colors, :colors_attributes
+ 
 end
