@@ -49,16 +49,13 @@
 
         <div class="col-sm-4">
           <div class="form-group">
-            <%= f.label :image , :class=>'control-label'%><br>
-            <%= f.text_field :image, :class=>'form-control input-md' %>
+          <label for="file">Image Upload</label> <%= file_field_tag "file" %>
           </div>
         </div>
 
       </div>
 
       <div class="row">
-
-
         <div class="col-sm-4">
           <div class="form-group">
             <label class=" control-label" for="radios">Fit</label>
@@ -94,78 +91,106 @@
        </div>
      </div>
 
+     <div class="col-sm-4">
+  <div class="form-group">
+    <%= f.label :retailer, "Retailer", class: 'control-label' %>
+    <small>
+     <%= link_to retailers_path, class: "" do %>
+     <span class="glyphicon glyphicon-cog"></span> Retailer Manager
+     <% end %>
+   </small>
+   <%= f.select(:retailers,options_from_collection_for_select(Retailer.all, :id, :name),  required:true,multiple: true,:class=> "form-control"  )%>
+ </div>
+</div>
 
 
+ </div>
+
+ <div class="row">
+
+   <div class="col-sm-4">
+    <div class="form-group">
+      <%= f.label :colors, "Color(s)", class: 'control-label' %>
+      <small>
+       <%= link_to brands_path, class: "" do %>
+       <span class="glyphicon glyphicon-cog"></span> Brand Manager
+       <% end %>
+     </small>
+     <%= f.select(:brands,options_from_collection_for_select(Brand.all, :id, :name), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
+   </div>
+ </div>
+
+ <div class="col-sm-4">
+  <div class="form-group">
+    <%= f.label :event, "Event(s)", class: 'control-label' %>
+    <small>
+     <%= link_to events_path, class: "" do %>
+     <span class="glyphicon glyphicon-cog"></span> Event Manager
+     <% end %>
+   </small>
+   <%= f.select(:events,options_from_collection_for_select(Event.all, :id, :name), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
+ </div>
+</div>
 
      <div class="col-sm-4">
       <div class="form-group">
-        <div class="col-md-4">
-          <div class="form-group">
-            <%= f.label :colors, "Colors", class: 'col-sm-2 control-label' %>
-  <div class="col-sm-10">
-
-    <%= f.select(:colors, options_from_collection_for_select(@color,'id','name'), multiple: "multiple" ) %>
-
-
-
-
-
-          </div>
-        </div>
-
-        
-
-      </div>
-    </div>
-
-  </div>
+        <%= f.label :colors, "Color(s)", class: 'control-label' %>
+        <small>
+         <%= link_to colors_path, class: "" do %>
+         <span class="glyphicon glyphicon-cog"></span> Color Manager
+         <% end %>
+       </small>
+       <%= f.select(:colors,options_from_collection_for_select(Color.all, :id, :name), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
+     </div>
+   </div>
 
 
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="form-group">
-        <div class="field">
-          <%= f.label :notes , :class=>'control-label'%><br>
-          <%= f.text_field :notes, :class=>'form-control input-md'  %>
-        </div>
-      </div>
-    </div>
+</div>
 
 
+<div class="row">
 
-    <div class="col-sm-6">
-      <div class="form-group">
-        <%= f.label :description , :class=>'control-label'%><br>
-        <%= f.text_field :description, :class=>'form-control input-md'  %>
-      </div>
-    </div>
-  </div>
+  <div class="col-sm-4">
+  <div class="form-group">
+    <%= f.label :type, "Type(s)", class: 'control-label' %>
+    <small>
+     <%= link_to types_path, class: "" do %>
+     <span class="glyphicon glyphicon-cog"></span> Type Manager
+     <% end %>
+   </small>
+   <%= f.select(:types,options_from_collection_for_select(Type.all, :id, :name), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
+ </div>
+</div>
+
+
 
   <div class="col-sm-4">
     <div class="form-group">
-      <label class=" control-label" for="checkboxes">Occasion</label>
-      <div class="checkbox">
-        <label for="checkboxes-0">
-          <input name="checkboxes" id="checkboxes-0" value="1" type="checkbox">
-          Everyday
-        </label>
+      <div class="field">
+        <%= f.label :notes , :class=>'control-label'%><br>
+        <%= f.text_area :notes, size: '50X20', :class=>'form-control input-md'  %>
       </div>
-
     </div>
   </div>
 
 
 
+  <div class="col-sm-4">
+    <div class="form-group">
+      <%= f.label :description , :class=>'control-label'%><br>
+      <%= f.text_area :description, size: '50X20', :class=>'form-control input-md'  %>
+    </div>
+  </div>
+</div>
 
 
 
 
 
+<div class="form-group">
+ <%= f.submit %>
+</div>
 
-  <div class="form-group">
-   <%= f.submit %>
- </div>
- 
 
 
 

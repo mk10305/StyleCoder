@@ -1,4 +1,19 @@
 
+.sp-palette {
+max-width: 200px;
+}
+
+.label {
+    background: #444;
+    padding:8px;    
+    border-radius: 4px;
+    color: #eee;
+    margin-top: 10px;
+    display:inline-block;
+}
+
+
+
 /*Sign Up and Log-in Page Styles */
 .navbar-inverse {
   background-color: transparent;
@@ -59,6 +74,8 @@
     background-size: cover;
     -o-background-size: cover;
 }
+
+
 
 /*General Styles*/
 
@@ -205,11 +222,10 @@ font-family: 'Cabin', sans-serif;
 
 .form_text {
    background: rgba(154,167,175, 0.8);
-  /* background:rgba(0,0,0,.4);*/
    color: white;
    margin-top: 150px;
    font-size: 20px;
-     font-family: 'Cabin', sans-serif;
+  font-family: 'Cabin', sans-serif;
 }
 
 
