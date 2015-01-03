@@ -12,6 +12,7 @@
  *
  *
  *= require app
+ *= require spectrum
  *= require_tree .
  *= require_self
  */

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require isotype.js
+//= require spectrum.js
 //= require_tree .
 jQuery(window).load(function () {
   // Takes the gutter width from the bottom margin of .closet_item
