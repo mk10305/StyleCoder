@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  
+
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   #before_action :require_user
   # GET /items
@@ -11,6 +11,8 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
+
+
   end
 
   # GET /items/new
@@ -26,8 +28,13 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
+
     @item = Item.new(item_params)
-  
+    @item.colors = Color.where(id: params[:item][:itemcolors])
+    @item.events = Event.where(id: params[:item][:itemevents])
+    @item.brands = Brand.where(id: params[:item][:itembrands])
+    @item.retailers = Retailer.where(id: params[:item][:itemretailers])
+    @item.types = Type.where(id: params[:item][:itemtypes])
 
     respond_to do |format|
       if @item.save
@@ -43,16 +50,24 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
-    respond_to do |format|
-      if @item.update(item_params)
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @item }
-      else
-        format.html { render :edit }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+
+   
+   @item.colors = Color.where(id: params[:item][:itemcolors])
+   @item.events = Event.where(id: params[:item][:itemevents])
+   @item.brands = Brand.where(id: params[:item][:itembrands])
+   @item.retailers = Retailer.where(id: params[:item][:itemretailers])
+   @item.types = Type.where(id: params[:item][:itemtypes])
+
+   respond_to do |format|
+    if @item.update(item_params)
+      format.html { redirect_to @item, notice: 'Item was successfully updated.' }
+      format.json { render :show, status: :ok, location: @item }
+    else
+      format.html { render :edit }
+      format.json { render json: @item.errors, status: :unprocessable_entity }
     end
   end
+end
 
   # DELETE /items/1
   # DELETE /items/1.json
@@ -72,11 +87,12 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :cost, :image, :fit, :season, :notes, :description, :user_id, colors_attributes: [:id, :name, :code_hex])
-    end
+     params.require(:item).permit(:name, :cost, :image, :fit, :season, :notes, :description, :user_id
+       )
+   end
 
 
-end
+ end
 
 
 

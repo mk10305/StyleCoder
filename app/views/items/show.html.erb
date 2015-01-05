@@ -1,43 +1,58 @@
    <%= render 'layouts/nav' %>
 
 
-  <div class ="container">
+   <div class ="container">
     <div class= "row">
       <div class= "col-md-12">
         <div class="page-header">
-          <h1>Title of Item 
+          <h1><%= @item.name %>
            <small>
-             <a class="" href= "#"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"> </span> </a>
-             <a class="" href= "#"> <span class="glyphicon glyphicon-trash" aria-hidden="true"> </span> </a>
-           </small>
-         </h1>
-       </div>
-     </div>
-   </div>
+            <%= link_to new_item_path, class: "" , 'data-no-turbolink'=> true do %>
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
+            <% end %>
+
+               <%= link_to edit_item_path, class: "" , 'data-no-turbolink'=> true do %>
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 
+            <% end %>
+
+            <%= link_to @item, :method => :delete, data: { confirm: "Are you sure want to delete this item?" } do %>
+            <span class="glyphicon glyphicon-trash"  aria-hidden="true"></span>
+            <% end %>
 
 
-   <div class="row">
-
-     <div class="col-md-4">
-      <div class="thumbnail">
-       <%= image_tag("red_1.jpg", :alt => "red_1.jpg") %>
-       <div class="caption">
-        <p> These are the shoes I bought from Paris. They are super shiny! I think they'll look great with my dark skinny jeans. Love them!</p>
-        <p><a href="#" class="btn btn-info" role="button">Wore it! <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></a></p>
+          </small>
+        </h1>
       </div>
-    </div>         
+    </div>
   </div>
 
 
-  <div class="col-md-8">
-    <ul class="list-group">
-      <li class="list-group-item"><span> Brand: </span> Marc Jacobs</li>
-      <li class="list-group-item"><span> Fit: </span> Tight</li>
-      <li class="list-group-item"><span>Store: </span> Macys </li>
-      <li class="list-group-item"><span> Cost: </span> $100</li>
-      <li class="list-group-item"><span> Notes: </span>These Shoes are hard to walk in!</li>
-    </ul>
-  </div>
+  <div class="row">
+
+   <div class="col-md-4">
+    <div class="thumbnail">
+     <%= image_tag(@item.image_url, :width => 300) if @item.image.present? %>
+     <div class="caption">
+      <p> <%= @item.description %></p>
+      <p><a href="#" class="btn btn-info" role="button">Wore it! <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></a></p>
+    </div>
+  </div>         
+</div>
+
+
+<div class="col-md-8">
+  <ul class="list-group">
+    <li class="list-group-item"><span>Brand: </span> <%= @item.brands.map(&:name).join(', ') %> </li>
+    <li class="list-group-item"><span>Fit: </span> <%= @item.fit %> </li>
+    <li class="list-group-item"><span>Retailer: </span> <%= @item.retailers.map(&:name).join(', ') %>  </li>
+    <li class="list-group-item"><span>Color: </span> <%= @item.colors.map(&:name).join(', ') %>  </li>
+    <li class="list-group-item"><span>Type: </span> <%= @item.types.map(&:name).join(', ') %>  </li>
+    <li class="list-group-item"><span>Event: </span> <%= @item.events.map(&:name).join(', ') %>  </li>
+    <li class="list-group-item"><span> Cost: </span> <%= @item.cost %> </li>
+    <li class="list-group-item"><span> Notes: </span><%= @item.notes %> </li>
+
+  </ul>
+</div>
 
 
 </div>

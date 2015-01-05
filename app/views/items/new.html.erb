@@ -1,4 +1,38 @@
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <% if !logged_in? %> 
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to 'Sign Up', register_path , 'data-no-turbolink'=>true %></li>
+        </ul> 
+
+        <%end%> 
+
+    </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+
+   <div class="col-md-4">
+  <div class="jumbotron form_text"> 
+      <h1>Create a Digital Repository of your Clothes!  
+        <br/>
+        <small>
+
+          <%= link_to items_path, class: "" , 'data-no-turbolink'=> true do %>
+          <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> View all Items
+          <% end %>
+        </small>
+
+
+      </h1>
+      <p>Enter information about a clothing item in the form.</p>
+    </div>
+  </div>
 
 
 <%= render 'form' %>
 
+</div>
+</div>

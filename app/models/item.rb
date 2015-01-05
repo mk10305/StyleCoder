@@ -10,6 +10,8 @@ class Item < ActiveRecord::Base
   has_many :itemretailers
   has_many :retailers, :through => :itemretailers
 
+  mount_uploader :image, PictureUploader
+
 
  
 end

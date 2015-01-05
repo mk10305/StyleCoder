@@ -1,20 +1,21 @@
-<div class="container">
-  <div class="row">
 
-   <div class="col-md-4">
-    <div class="jumbotron form_text">
-      <h1>Create a Digital Repository of your Clothes!  <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></h1>
-      <p>Enter information about a clothing item in the form.</p>
-
-    </div>
-  </div>
 
 
   <div class="col-md-6 col-md-offset-2 form_container">
 
     <%= form_for(@item) do |f| %>
     <fieldset>
+
+     <% if params[:controller] == 'items' && params[:action] == 'new' %>
       <legend> Add an Item to your Virtual Closet </legend>
+
+      <% else %>
+       <legend> Edit your Item    <%= image_tag(@item.image_url, :width => 100, :class => "") if @item.image.present? %>  </legend>
+
+       <% end %>
+      
+ 
+
       <% if @item.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
@@ -49,7 +50,9 @@
 
         <div class="col-sm-4">
           <div class="form-group">
-          <label for="file">Image Upload</label> <%= file_field_tag "file" %>
+            <%= f.label :image , :class=>'control-label'%><br>
+            <%= f.file_field :image %>
+        
           </div>
         </div>
 
@@ -99,7 +102,7 @@
      <span class="glyphicon glyphicon-cog"></span> Retailer Manager
      <% end %>
    </small>
-   <%= f.select(:retailers,options_from_collection_for_select(Retailer.all, :id, :name),  required:true,multiple: true,:class=> "form-control"  )%>
+   <%= f.select(:itemretailers,options_from_collection_for_select(Retailer.all, :id, :name),  required:true,multiple: true,:class=> "form-control"  )%>
  </div>
 </div>
 
@@ -110,9 +113,14 @@
 
    <div class="col-sm-4">
     <div class="form-group">
-<%= f.fields_for :colors do |builder| %>
- <%= render  "colors_fields", :f => builder %>
- <% end %>
+       <%= f.label :color, "Color(s)", class: 'control-label' %>
+       <small>
+     <%= link_to colors_path, class: "" do %>
+     <span class="glyphicon glyphicon-cog"></span> Color Manager
+     <% end %>
+   </small>
+<%= f.select(:itemcolors,options_from_collection_for_select(Color.all, :id, :name), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
+
    </div>
  </div>
 
@@ -124,19 +132,19 @@
      <span class="glyphicon glyphicon-cog"></span> Event Manager
      <% end %>
    </small>
-   <%= f.select(:events,options_from_collection_for_select(Event.all, :id, :name), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
+   <%= f.select(:itemevents,options_from_collection_for_select(Event.all, :id, :name), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
  </div>
 </div>
 
      <div class="col-sm-4">
       <div class="form-group">
-        <%= f.label :colors, "Color(s)", class: 'control-label' %>
+        <%= f.label :brand, "Brand(s)", class: 'control-label' %>
         <small>
-         <%= link_to colors_path, class: "" do %>
-         <span class="glyphicon glyphicon-cog"></span> Color Manager
+         <%= link_to brands_path, class: "" do %>
+         <span class="glyphicon glyphicon-cog"></span> Brand Manager
          <% end %>
        </small>
-       <%= f.select(:colors,options_from_collection_for_select(Color.all, :id, :name), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
+       <%= f.select(:itembrands,options_from_collection_for_select(Brand.all, :id, :name), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
      </div>
    </div>
 
@@ -154,7 +162,7 @@
      <span class="glyphicon glyphicon-cog"></span> Type Manager
      <% end %>
    </small>
-   <%= f.select(:types,options_from_collection_for_select(Type.all, :id, :name), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
+   <%= f.select(:itemtypes,options_from_collection_for_select(Type.all, :id, :name), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
  </div>
 </div>
 
@@ -201,6 +209,4 @@
 
 
 
-</div>
 
-</div><!-- /.container -->

@@ -17,31 +17,21 @@
 
 <div class="row">
   <div class="col-md-12">
-    <div class="form-group">
 
-      <%= f.label :name , :class=>'control-label'%><br>
-      <%= f.text_field :name, :class=>'form-control input-md'  %>
-
-
-
-    </div>
-
-
-<h2>Choose a Color</h2>
-<input type='text' id="showPaletteOnly"/>
-
-<br />
-
-
-
-
+   <div class="form-group">
+    <h2>Choose a Color</h2>
+    <input type='text' id="showPaletteOnly"/>
+    <%= f.text_field :hex_code %>
   </div>
 
 
+  <div class="form-group">
 
 
+    <%= f.text_field :name, :class=>'form-control input-md'  %>
 
   </div>
+
 
 </div>
 
@@ -50,11 +40,13 @@
 </div>
 
 
-
-    
-
-
 <% end %>
+
+</div>
+
+
+
+
 
 
 
@@ -63,25 +55,28 @@
 
 
 $("#showPaletteOnly").spectrum({
-    showPaletteOnly: true,
-    showPalette:true,
-    hideAfterPaletteSelect:true,
-    color: 'black',
+  showPaletteOnly: true,
+  showPalette:true,
+  hideAfterPaletteSelect:true,
+  color: " <%= @color.name|| 'black' %>",                                        
+  change: function(color){ 
+    $("#color_name").val(color.toName()); 
+    $("#color_hex_code").val(color.toHex());  },
     palette: [
-        ['DeepPink', 'HotPink', 'LightPink','MediumVioletRed', 'Pink'],
-        ['Crimson', 'DarkRed', 'Salmon', 'Red', 'Coral'],
-        ['DarkOrange', 'Orange', 'Gold', 'OrangeRed', 'LightCoral'],
-        ['DarkKhaki', 'Yellow', 'PeachPuff', 'LightYellow', 'Khaki'],
-        ['Bisque', 'Brown', 'Chocolate', 'GoldenRod', 'Maroon'],
-        ['Tan', 'SaddleBrown', 'RosyBrown', 'Olive', 'Cornsilk'],
-        ['Chartreuse', 'DarkGreen', 'Green', 'Lime', 'SpringGreen'],
-        ['CadetBlue', 'Cyan', 'Teal', 'DeepSkyBlue', 'LightSkyBlue'],
-        ['Blue', 'BlueViolet', 'CornflowerBlue', 'DodgerBlue', 'SteelBlue'],
-        ['MidnightBlue', 'Navy', 'LightBlue', 'DarkOrchid', 'DarkMagenta'],
-        ['Fuchsia', 'Lavender', 'MediumPurple', 'Plum', 'Purple'],
-        ['Beige', 'Black', 'White', 'DarkGray', 'Silver']
+    ['DeepPink', 'HotPink', 'LightPink','MediumVioletRed', 'Pink'],
+    ['Crimson', 'DarkRed', 'Salmon', 'Red', 'Coral'],
+    ['DarkOrange', 'Orange', 'Gold', 'OrangeRed', 'LightCoral'],
+    ['DarkKhaki', 'Yellow', 'PeachPuff', 'LightYellow', 'Khaki'],
+    ['Bisque', 'Brown', 'Chocolate', 'GoldenRod', 'Maroon'],
+    ['Tan', 'SaddleBrown', 'RosyBrown', 'Olive', 'Cornsilk'],
+    ['Chartreuse', 'DarkGreen', 'Green', 'Lime', 'SpringGreen'],
+    ['CadetBlue', 'Cyan', 'Teal', 'DeepSkyBlue', 'LightSkyBlue'],
+    ['Blue', 'BlueViolet', 'CornflowerBlue', 'DodgerBlue', 'SteelBlue'],
+    ['MidnightBlue', 'Navy', 'LightBlue', 'DarkOrchid', 'DarkMagenta'],
+    ['Fuchsia', 'Lavender', 'MediumPurple', 'Plum', 'Purple'],
+    ['Beige', 'Black', 'White', 'DarkGray', 'Silver']
     ]
-});
+  })
 
 </script>
 
