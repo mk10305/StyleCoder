@@ -17,27 +17,27 @@
 
 <div class="row">
   <div class="col-md-12">
-
    <div class="form-group">
     <h2>Choose a Color</h2>
-    <input type='text' id="showPaletteOnly"/>
-    <%= f.text_field :hex_code %>
+    <input type='text' id="showPaletteOnly" class=""/>
+
+    <%= f.text_field :name, :class=>''  %>
+   
   </div>
 
 
   <div class="form-group">
-
-
-    <%= f.text_field :name, :class=>'form-control input-md'  %>
+     <%= f.text_field :hex_code, :class=>'hidden' %>
 
   </div>
 
-
-</div>
-
+<br/>
 <div class="form-group">
   <%= f.submit "Submit", class: 'btn btn-info' %>
 </div>
+
+</div>
+
 
 
 <% end %>

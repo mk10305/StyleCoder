@@ -43,3 +43,6 @@ gem 'spring',        group: :development
 gem "pry"
 
 gem 'carrierwave'
+
+
+

@@ -20,42 +20,64 @@
 
 
 <div class="row">
+  <div class="col-md-12">
+    <!-- tabs -->
+    <div class="tabbable">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#one" data-toggle="tab">Your Brands</a></li>
+        <li><a href="#two" data-toggle="tab">Breakdown</a></li>
+        <li><a href="#twee" data-toggle="tab">Key Stats </a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="one">
 
- <div class="col-md-6">
+          <div class="table-responsive">
+            <table class="table table-striped">
 
-<div class="table-responsive">
-<table class="table table-striped">
+              <% @brands.each do |brand| %>
+              <tr>
+                <td>
+                  <%= brand.name %> 
 
-  <% @brands.each do |brand| %>
-<tr>
-  <td>
-<%= brand.name %> 
+                </td>
+                <td class="table-icons">
+                 <%= link_to edit_brand_path(brand), class: "" do %>
+                 <span class="glyphicon glyphicon-pencil"></span> 
+                 <% end %> 
+                 <%= link_to brand, method: :delete, data: { confirm: 'Are you sure?' }, class: "" do %>
+                 <span class="glyphicon glyphicon-trash"></span> 
+                 <% end %> 
 
-  </td>
-  <td class="table-icons">
-     <%= link_to edit_brand_path(brand), class: "" do %>
-          <span class="glyphicon glyphicon-pencil"></span> 
-          <% end %> 
-     <%= link_to brand, method: :delete, data: { confirm: 'Are you sure?' }, class: "" do %>
-          <span class="glyphicon glyphicon-trash"></span> 
-           <% end %> 
-
-  </td>
-</tr>
- <% end %> 
-</table>
-</div>
+               </td>
+             </tr>
+             <% end %> 
+           </table>
+         </div>
 
 
 
-</div>
+       </div>
+       <div class="tab-pane" id="two">
 
-<div class="col-md-6">
-  Graph
-</div>
+        <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto">
+        </div>
+
+
+      </div>
+      <div class="tab-pane" id="twee">
+         <ul class="list-group">
+      <li class="list-group-item"><span> Brands Created: </span> 10</li>
+      <li class="list-group-item"><span> Most Frequent brand: </span> Orange</li>
+      <li class="list-group-item"><span>Least Frequent brand: </span> Brown </li>
+    </ul>
 
 
 
+
+      </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 </div>
