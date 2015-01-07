@@ -11,10 +11,20 @@
       <legend> Add an Item to your Virtual Closet </legend>
 
       <% else %>
-       <legend> Edit your Item    <%= image_tag(@item.image_url, :width => 100, :class => "") if @item.image.present? %>  </legend>
+       <legend> Edit your Item    
+
+      <%= link_to item_path(@item.id), 'data-no-turbolink'=> true do %>
+       <%= image_tag( @item.image , :alt=>  @item.name , :width => "50") %>
+       
+        <% end %>
+
+
+
+
+        <% if @item.image.present? %>  </legend>
 
        <% end %>
-      
+      <% end %>
  
 
       <% if @item.errors.any? %>
@@ -99,11 +109,13 @@
   <div class="form-group">
     <%= f.label :retailer, "Retailer", class: 'control-label' %>
     <small>
-     <%= link_to retailers_path, class: "" do %>
+     <%= link_to retailers_path, class: "", 'data-no-turbolink'=> true do %>
      <span class="glyphicon glyphicon-cog"></span> Retailer Manager
      <% end %>
    </small>
-   <%= f.select(:itemretailers,options_from_collection_for_select(Retailer.all, :id, :name),  required:true,multiple: true,:class=> "form-control"  )%>
+
+
+   <%= f.select(:itemretailers,options_from_collection_for_select(Retailer.all, :id, :name, @item.retailers.map {|j| j.id}), required:true,multiple: true,:class=> "form-control"  )%>
  </div>
 </div>
 
@@ -116,11 +128,14 @@
     <div class="form-group">
        <%= f.label :color, "Color(s)", class: 'control-label' %>
        <small>
-     <%= link_to colors_path, class: "" do %>
+     <%= link_to colors_path, class: "", 'data-no-turbolink'=> true do %>
      <span class="glyphicon glyphicon-cog"></span> Color Manager
      <% end %>
    </small>
-<%= f.select(:itemcolors,options_from_collection_for_select(Color.all, :id, :name), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
+
+
+
+<%= f.select(:itemcolors,options_from_collection_for_select(Color.all, :id, :name, @item.colors.map {|j| j.id}), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
 
    </div>
  </div>
@@ -129,11 +144,11 @@
   <div class="form-group">
     <%= f.label :event, "Event(s)", class: 'control-label' %>
     <small>
-     <%= link_to events_path, class: "" do %>
+     <%= link_to events_path, class: "", 'data-no-turbolink'=> true do %>
      <span class="glyphicon glyphicon-cog"></span> Event Manager
      <% end %>
    </small>
-   <%= f.select(:itemevents,options_from_collection_for_select(Event.all, :id, :name), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
+   <%= f.select(:itemevents,options_from_collection_for_select(Event.all, :id, :name,  @item.events.map {|j| j.id}), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
  </div>
 </div>
 
@@ -141,11 +156,11 @@
           <div class="form-group">
         <%= f.label :brand, "Brand(s)", class: 'control-label' %>
         <small>
-         <%= link_to brands_path, class: "" do %>
+         <%= link_to brands_path, class: "", 'data-no-turbolink'=> true do %>
          <span class="glyphicon glyphicon-cog"></span> Brand Manager
          <% end %>
        </small>
-       <%= f.select(:brands,options_from_collection_for_select(Brand.all, :id, :name), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
+       <%= f.select(:brands,options_from_collection_for_select(Brand.all, :id, :name, @item.brands.map {|j| j.id}), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
      </div>
   
    </div>
@@ -160,11 +175,11 @@
   <div class="form-group">
     <%= f.label :type, "Type(s)", class: 'control-label' %>
     <small>
-     <%= link_to types_path, class: "" do %>
+     <%= link_to types_path, class: "", 'data-no-turbolink'=> true do %>
      <span class="glyphicon glyphicon-cog"></span> Type Manager
      <% end %>
    </small>
-   <%= f.select(:itemtypes,options_from_collection_for_select(Type.all, :id, :name), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
+   <%= f.select(:itemtypes,options_from_collection_for_select(Type.all, :id, :name, @item.types.map {|j| j.id}), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
  </div>
 </div>
 

@@ -33,11 +33,12 @@
 
      <div class="col-md-4">
       <div class="jumbotron form_text">
-        <h1>Edit your Item: New Jeans 
-        
+        <h1>Edit your Item:   </h1>
 
-        </h1>
-        <p>Use the form to update your item</p>
+      <h2 class="text-center"> <%= link_to @item.name, item_path(@item.id), 'data-no-turbolink'=>true %> </h2>
+
+     
+
 
 
 

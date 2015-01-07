@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.where(user_id: current_user.id).includes(:colors).includes(:events).includes(:types).includes(:retailers)
+    @items = Item.where(user_id: current_user.id).includes(:colors).includes(:events).includes(:types).includes(:retailers).includes(:brands)
 
   end
 
