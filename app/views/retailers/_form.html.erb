@@ -1,7 +1,10 @@
+
 <%= form_for(@retailer) do |f| %>
 <% if @retailer.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(@retailer.errors.count, "error") %> prohibited this retailer from being saved:</h2>
+<div class="row" id="error_explanation">
+ <div class="alert alert-warning alert-dismissible col-md-12" id="error_explanation" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4><%= pluralize(@retailer.errors.count, "error") %> prohibited this retailer from being saved:</h4>
 
   <ul>
     <% @retailer.errors.full_messages.each do |message| %>
@@ -9,7 +12,14 @@
     <% end %>
   </ul>
 </div>
+
+
+
+</div>
+
+
 <% end %>
+
 
 
 

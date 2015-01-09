@@ -24,7 +24,9 @@ class ColorsController < ApplicationController
   # POST /colors
   # POST /colors.json
   def create
+
     @color = Color.new(color_params)
+    @color.name = "black" if @color.name.empty?
 
     respond_to do |format|
       if @color.save

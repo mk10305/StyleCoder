@@ -1,4 +1,10 @@
 
+.messagecontainer {
+  margin-top: 100px;
+
+}
+
+
 .sp-palette {
 max-width: 200px;
 }
@@ -33,7 +39,7 @@ max-width: 200px;
 
 
 .heading_container{
-  margin-top: 280px;
+margin-top: 100px;
   background:rgba(0,0,0,.4);
 }
 
@@ -91,7 +97,7 @@ body {
 }
 
 .page-header {
-  margin-top: 150px;
+ /*margin-top: 150px;*/
 }
 
 
@@ -329,9 +335,9 @@ background:transparent;
   background-image: url("../images/footer.jpeg");
 }
 
-.container {
+/*.container {
   margin-bottom: 50px;
-}
+}*/
 
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
   border: none;
@@ -456,6 +462,9 @@ background:transparent;
   display:none;
 }
 
-
+.closetpics {
+  max-height: 500px;
+  margin-bottom: 100px;
+}
 
 

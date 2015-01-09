@@ -122,8 +122,17 @@ $(function () {
           series: [{
             type: 'pie',
             name: 'Browser share',
-            data: [
-            ['Orange',   45.0],
+            data: [ // like this array_colors and u create that array in controller
+            // let's say wa are in the controller, you have to do. my_colors = current_user.items.map(:colors).flatten.uniq
+            // all_items = current_user.items
+            // percents = my_colors.map do |color| 
+            //  f= all_items.select{|item| item.colors.include? color }
+            //  ["#{color.name}", f.size/ all_items/size]
+            // end 
+
+// that code will give you statistic bellow
+
+            ['Orange',   48],
             ['Pink',       26.8],
 
             ['Green',    8.5],

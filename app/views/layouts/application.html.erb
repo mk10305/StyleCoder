@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <% klass = "" 
- 
- if params[:controller] == 'items' && params[:action] == 'new' || params[:controller] == 'items' && params[:action] == 'edit'
+
+if params[:controller] == 'items' && params[:action] == 'new' || params[:controller] == 'items' && params[:action] == 'edit'
   klass = "class='full_form'" 
- elsif params[:controller] == 'sessions' && params[:action] == 'new' || params[:controller] == 'users' && params[:action] == 'new'
+elsif params[:controller] == 'sessions' && params[:action] == 'new' || params[:controller] == 'users' && params[:action] == 'new'
   klass = "class='full'"
 else
   klass= "class=''"
@@ -12,8 +12,8 @@ end
 <html <%= klass.html_safe %> >
 <head>
   <title>StyleCoder</title>
- 
- <meta charset="utf-8">
+  
+  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
@@ -25,7 +25,7 @@ end
   <link href='http://fonts.googleapis.com/css?family=Cabin|Lobster' rel='stylesheet' type='text/css'>
 
   <!-- Custom CSS -->
- <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
 
@@ -33,12 +33,46 @@ end
 </head>
 <body>
 
+
+  <!-- Navigation -->
+
+  <% if params[:controller] == 'users' && params[:action] == 'new' || params[:controller] == 'sessions' && params[:action] == 'new' %>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <% if !logged_in? %> 
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'Sign Up', register_path , 'data-no-turbolink'=>true %></li>
+      </ul> 
+
+      <%end%> 
+
+    </div>
+  </nav>
+
+  <% else %>
+
+  <%= render 'layouts/nav' %>
+
+  <%end%>
+
+
+  <div class="container messagecontainer">
+
+   <div class= "row">
+    <div class= "col-md-12">
+      <%= render partial: 'layouts/messages' %>
+    </div>
+  </div>
+</div>
+
+
 <%= yield %>
 
-
-  <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script src="http://code.highcharts.com/highcharts.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 </body>
 </html>

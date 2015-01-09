@@ -19,7 +19,13 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = current_user.items.new
-    @color = Color.all
+    @colors = Color.all
+    
+    if @colors.blank?
+      flash[:warning] = "No color has been created, create a new color to add a new item."
+      redirect_to new_color_path
+    end
+
   end
 
   # GET /items/1/edit
