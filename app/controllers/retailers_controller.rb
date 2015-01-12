@@ -5,7 +5,15 @@ class RetailersController < ApplicationController
   # GET /retailers.json
   def index
     @retailers = Retailer.all
-  end
+
+    my_retailers = current_user.items.map(&:retailers).flatten.uniq
+    all_items = current_user.items
+    @percents = my_retailers.map do |retailer| 
+     f= all_items.select{|item| item.retailers.include? retailer }
+     ["#{retailer.name}", (f.size*100)/ all_items.size]
+   end 
+
+ end
 
   # GET /retailers/1
   # GET /retailers/1.json
@@ -15,6 +23,7 @@ class RetailersController < ApplicationController
   # GET /retailers/new
   def new
     @retailer = Retailer.new
+
   end
 
   # GET /retailers/1/edit
@@ -71,4 +80,4 @@ class RetailersController < ApplicationController
     def retailer_params
       params.require(:retailer).permit(:name)
     end
-end
+  end

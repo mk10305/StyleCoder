@@ -5,6 +5,18 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+
+     my_events = current_user.items.map(&:events).flatten.uniq
+    all_items = current_user.items
+    @percents = my_events.map do |event| 
+     f= all_items.select{|item| item.events.include? event }
+     ["#{event.name}", (f.size*100)/ all_items.size]
+   end 
+
+
+
+
+
   end
 
   # GET /events/1

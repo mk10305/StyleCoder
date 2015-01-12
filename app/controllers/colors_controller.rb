@@ -5,7 +5,18 @@ class ColorsController < ApplicationController
   # GET /colors.json
   def index
     @colors = Color.all
-  end
+
+    my_colors = current_user.items.map(&:colors).flatten.uniq
+    all_items = current_user.items
+    @percents = my_colors.map do |color| 
+     f= all_items.select{|item| item.colors.include? color }
+     ["#{color.name}", (f.size*100)/ all_items.size]
+   end 
+
+
+
+
+ end
 
   # GET /colors/1
   # GET /colors/1.json
@@ -73,4 +84,4 @@ class ColorsController < ApplicationController
     def color_params
       params.require(:color).permit(:name)
     end
-end
+  end

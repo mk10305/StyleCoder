@@ -5,7 +5,15 @@ class TypesController < ApplicationController
   # GET /types.json
   def index
     @types = Type.all
-  end
+
+    my_types = current_user.items.map(&:types).flatten.uniq
+    all_items = current_user.items
+    @percents = my_types.map do |type| 
+     f= all_items.select{|item| item.types.include? type }
+     ["#{type.name}", (f.size*100)/ all_items.size]
+   end 
+
+ end
 
   # GET /types/1
   # GET /types/1.json
@@ -71,4 +79,4 @@ class TypesController < ApplicationController
     def type_params
       params.require(:type).permit(:name)
     end
-end
+  end

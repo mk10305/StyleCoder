@@ -5,7 +5,14 @@ class BrandsController < ApplicationController
   # GET /brands.json
   def index
     @brands = Brand.all
-  end
+
+    my_brands = current_user.items.map(&:brands).flatten.uniq
+    all_items = current_user.items
+    @percents = my_brands.map do |brand| 
+     f= all_items.select{|item| item.brands.include? brand }
+     ["#{brand.name}", (f.size*100)/ all_items.size]
+   end
+   end
 
   # GET /brands/1
   # GET /brands/1.json
@@ -71,4 +78,4 @@ class BrandsController < ApplicationController
     def brand_params
       params.require(:brand).permit(:name)
     end
-end
+  end

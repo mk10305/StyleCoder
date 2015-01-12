@@ -62,7 +62,9 @@
         <div class="col-sm-4">
           <div class="form-group">
             <%= f.label :image , :class=>'control-label'%><br>
+           
             <%= f.file_field :image %>
+         
         
           </div>
         </div>
@@ -160,7 +162,7 @@
          <span class="glyphicon glyphicon-cog"></span> Brand Manager
          <% end %>
        </small>
-       <%= f.select(:brands,options_from_collection_for_select(Brand.all, :id, :name, @item.brands.map {|j| j.id}), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
+       <%= f.select(:itembrands,options_from_collection_for_select(Brand.all, :id, :name, @item.brands.map {|j| j.id}), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
      </div>
   
    </div>

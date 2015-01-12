@@ -19,14 +19,34 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = current_user.items.new
-    @colors = Color.all
-    
+
+      @colors = Color.all
+      @brands = Brand.all
+      @events = Event.all
+      @retailers = Retailer.all
+      @types = Type.all
+
     if @colors.blank?
       flash[:warning] = "No color has been created, create a new color to add a new item."
       redirect_to new_color_path
-    end
-
+    elsif @brands.blank?
+     flash[:warning] = "No brand has been created, create a new brand to add a new item."
+     redirect_to new_brand_path
+   elsif @events.blank?
+    flash[:warning] = "No event has been created, create a new event to add a new item."
+    redirect_to new_event_path
+  elsif @retailers.blank?
+    flash[:warning] = "No retailer has been created, create a new event to add a new item."
+    redirect_to new_retailer_path
+  elsif @types.blank?
+    flash[:warning] = "No type has been created, create a new retailer to add a new item."
+    redirect_to new_type_path
   end
+
+
+
+
+end
 
   # GET /items/1/edit
   def edit
@@ -58,7 +78,7 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1.json
   def update
 
-   
+
    @item.colors = Color.where(id: params[:item][:itemcolors])
    @item.events = Event.where(id: params[:item][:itemevents])
    @item.brands = Brand.where(id: params[:item][:itembrands])
