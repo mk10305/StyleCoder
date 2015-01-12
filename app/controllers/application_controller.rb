@@ -9,7 +9,12 @@ helper_method :current_user, :logged_in?
 
 def current_user
   #if user exits do not execute this code. So this will only execute once
-  @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  if session[:user_id]
+    @current_user ||= User.find(session[:user_id]) rescue nil 
+  else
+    nil
+  end
+
 end
 
 def logged_in?

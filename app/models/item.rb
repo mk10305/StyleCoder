@@ -17,6 +17,17 @@ class Item < ActiveRecord::Base
   mount_uploader :image, PictureUploader
 
 
- validates :cost, presence: true
- 
+  validates :cost, presence: true, numericality: true
+  validates :name, presence: true
+  validates :image, presence: true
+  validates :fit, presence: true
+  validates :season, presence: true
+  validates :retailers, presence: true
+  validates :colors, presence: true
+  validates :events, presence: true
+  validates :brands, presence: true
+  validates :types, presence: true
+  validates :notes, presence: true
+  validates :description, presence: true
+
 end

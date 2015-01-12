@@ -8,7 +8,11 @@
            <small>
 
             <%= link_to new_item_path, class: "" , 'data-no-turbolink'=> true do %>
-            <span class="glyphicon glyphicon-plus-sign"></span> Add an Item
+            <span class="glyphicon glyphicon-plus-sign"></span> Add an Item 
+            <% end %>
+
+               <%= link_to items_path, class: "" , 'data-no-turbolink'=> true do %>
+            <span class="glyphicon glyphicon-refresh"></span>  Reset Filters
             <% end %>
 
           </small>

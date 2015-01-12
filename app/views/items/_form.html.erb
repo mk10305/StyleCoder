@@ -5,7 +5,7 @@
   <%= f.hidden_field :user_id %>
   <fieldset>
 
-   <% if params[:controller] == 'items' && params[:action] == 'new' %>
+   <% if params[:controller] == 'items' && params[:action].in?(['new', 'create']) %>
    <legend> Add an Item to your Virtual Closet </legend>
 
    <% else %>
@@ -14,10 +14,11 @@
     <% if @item.image.present? %>  
     <%= link_to item_path(:id), 'data-no-turbolink'=> true do %>
     <%= image_tag( @item.image , :alt=>  @item.name , :width => "50") %>
-  </legend>
+ 
   <% end %>
 
   <% end %>
+   </legend>
   <% end %>
 
 
@@ -46,7 +47,7 @@
   <div class="col-sm-4">
     <div class="form-group">
       <div class="field">
-        <%= f.label :name , :class=>'control-label'%><br>
+        <%= f.label :name , :class=>'control-label'%>
         <%= f.text_field :name, :class=>'form-control input-md'  %>
       </div>
     </div>
@@ -56,7 +57,7 @@
 
   <div class="col-sm-4">
     <div class="form-group">
-      <%= f.label :cost , :class=>'control-label'%><br>
+      <%= f.label :cost , :class=>'control-label'%>
       <%= f.text_field :cost, :class=>'form-control input-md'  %>
     </div>
   </div>
@@ -64,7 +65,7 @@
 
   <div class="col-sm-4">
     <div class="form-group">
-      <%= f.label :image , :class=>'control-label'%><br>
+      <%= f.label :image , :class=>'control-label'%><br/>
 
       <%= f.file_field :image %>
 
@@ -81,10 +82,10 @@
       <div class="radios">
        <%= f.radio_button :fit, "perfect"%>
        <%= f.label :contactmethod, 'Perfect', :value => 'perfect' %>
-       <br>
+       <br/>
        <%= f.radio_button :fit, "loose"%>
        <%= f.label :contactmethod, 'Loose', :value => 'loose' %>
-       <br>
+       <br/>
        <%= f.radio_button :fit, "tight"%>
        <%= f.label :contactmethod, 'Tight', :value => 'tight' %>
      </div>
