@@ -1,113 +1,116 @@
 
+<div class="col-md-6 col-md-offset-2 form_container">
+
+  <%= form_for(@item) do |f| %>
+  <%= f.hidden_field :user_id %>
+  <fieldset>
+
+   <% if params[:controller] == 'items' && params[:action] == 'new' %>
+   <legend> Add an Item to your Virtual Closet </legend>
+
+   <% else %>
+
+   <legend> Edit your Item    
+    <% if @item.image.present? %>  
+    <%= link_to item_path(:id), 'data-no-turbolink'=> true do %>
+    <%= image_tag( @item.image , :alt=>  @item.name , :width => "50") %>
+  </legend>
+  <% end %>
+
+  <% end %>
+  <% end %>
 
 
-  <div class="col-md-6 col-md-offset-2 form_container">
+  <% if @item.errors.any? %>
 
-    <%= form_for(@item) do |f| %>
-    <%= f.hidden_field :user_id %>
-    <fieldset>
+  <div class="row" id="error_explanation">
+   <div class="alert alert-warning alert-dismissible col-md-12" id="error_explanation" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h4>
 
-     <% if params[:controller] == 'items' && params[:action] == 'new' %>
-      <legend> Add an Item to your Virtual Closet </legend>
-
-      <% else %>
-       <legend> Edit your Item    
-
-      <%= link_to item_path(@item.id), 'data-no-turbolink'=> true do %>
-       <%= image_tag( @item.image , :alt=>  @item.name , :width => "50") %>
-       
-        <% end %>
-
-
-
-
-        <% if @item.image.present? %>  </legend>
-
-       <% end %>
+    <ul>
+      <% @item.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
       <% end %>
- 
+    </ul>
+  </div>
 
-      <% if @item.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
 
-        <ul>
-          <% @item.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-          <% end %>
-        </ul>
+
+</div>
+
+<% end %>
+
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="form-group">
+      <div class="field">
+        <%= f.label :name , :class=>'control-label'%><br>
+        <%= f.text_field :name, :class=>'form-control input-md'  %>
       </div>
-      <% end %>
-
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="form-group">
-            <div class="field">
-              <%= f.label :name , :class=>'control-label'%><br>
-              <%= f.text_field :name, :class=>'form-control input-md'  %>
-            </div>
-          </div>
-        </div>
+    </div>
+  </div>
 
 
 
-        <div class="col-sm-4">
-          <div class="form-group">
-            <%= f.label :cost , :class=>'control-label'%><br>
-            <%= f.text_field :cost, :class=>'form-control input-md'  %>
-          </div>
-        </div>
+  <div class="col-sm-4">
+    <div class="form-group">
+      <%= f.label :cost , :class=>'control-label'%><br>
+      <%= f.text_field :cost, :class=>'form-control input-md'  %>
+    </div>
+  </div>
 
 
-        <div class="col-sm-4">
-          <div class="form-group">
-            <%= f.label :image , :class=>'control-label'%><br>
-           
-            <%= f.file_field :image %>
-         
-        
-          </div>
-        </div>
+  <div class="col-sm-4">
+    <div class="form-group">
+      <%= f.label :image , :class=>'control-label'%><br>
 
-      </div>
+      <%= f.file_field :image %>
 
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="form-group">
-            <label class=" control-label" for="radios">Fit</label>
-            <div class="radios">
-             <%= f.radio_button :fit, "perfect"%>
-             <%= f.label :contactmethod, 'Perfect', :value => 'perfect' %>
-             <br>
-             <%= f.radio_button :fit, "loose"%>
-             <%= f.label :contactmethod, 'Loose', :value => 'loose' %>
-             <br>
-             <%= f.radio_button :fit, "tight"%>
-             <%= f.label :contactmethod, 'Tight', :value => 'tight' %>
-           </div>
-         </div>
-       </div>
+      
+    </div>
+  </div>
 
-       <div class="col-sm-4">
-        <div class="form-group">
-          <label class=" control-label" for="radios">Season</label>
-          <div class="radios">
-           <%= f.radio_button :season, "autumn"%>
-           <%= f.label :contactmethod, 'Autumn', :value => 'autumn' %>
-           <br>
-           <%= f.radio_button :season, "winter"%>
-           <%= f.label :contactmethod, 'Winter', :value => 'winter' %>
-           <br>
-           <%= f.radio_button :season, "spring"%>
-           <%= f.label :contactmethod, 'Spring', :value => 'spring' %>
-           <br>
-           <%= f.radio_button :season, "summer"%>
-           <%= f.label :contactmethod, 'Summer', :value => 'summer' %>
-         </div>
-       </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label class=" control-label" for="radios">Fit</label>
+      <div class="radios">
+       <%= f.radio_button :fit, "perfect"%>
+       <%= f.label :contactmethod, 'Perfect', :value => 'perfect' %>
+       <br>
+       <%= f.radio_button :fit, "loose"%>
+       <%= f.label :contactmethod, 'Loose', :value => 'loose' %>
+       <br>
+       <%= f.radio_button :fit, "tight"%>
+       <%= f.label :contactmethod, 'Tight', :value => 'tight' %>
      </div>
+   </div>
+ </div>
 
-     <div class="col-sm-4">
+ <div class="col-sm-4">
+  <div class="form-group">
+    <label class=" control-label" for="radios">Season</label>
+    <div class="radios">
+     <%= f.radio_button :season, "autumn"%>
+     <%= f.label :contactmethod, 'Autumn', :value => 'autumn' %>
+     <br>
+     <%= f.radio_button :season, "winter"%>
+     <%= f.label :contactmethod, 'Winter', :value => 'winter' %>
+     <br>
+     <%= f.radio_button :season, "spring"%>
+     <%= f.label :contactmethod, 'Spring', :value => 'spring' %>
+     <br>
+     <%= f.radio_button :season, "summer"%>
+     <%= f.label :contactmethod, 'Summer', :value => 'summer' %>
+   </div>
+ </div>
+</div>
+
+<div class="col-sm-4">
   <div class="form-group">
     <%= f.label :retailer, "Retailer", class: 'control-label' %>
     <small>
@@ -122,14 +125,14 @@
 </div>
 
 
- </div>
+</div>
 
- <div class="row">
+<div class="row">
 
-   <div class="col-sm-4">
-    <div class="form-group">
-       <%= f.label :color, "Color(s)", class: 'control-label' %>
-       <small>
+ <div class="col-sm-4">
+  <div class="form-group">
+   <%= f.label :color, "Color(s)", class: 'control-label' %>
+   <small>
      <%= link_to colors_path, class: "", 'data-no-turbolink'=> true do %>
      <span class="glyphicon glyphicon-cog"></span> Color Manager
      <% end %>
@@ -137,12 +140,12 @@
 
 
 
-<%= f.select(:itemcolors,options_from_collection_for_select(Color.all, :id, :name, @item.colors.map {|j| j.id}), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
+   <%= f.select(:itemcolors,options_from_collection_for_select(Color.all, :id, :name, @item.colors.map {|j| j.id}), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
 
-   </div>
  </div>
+</div>
 
- <div class="col-sm-4">
+<div class="col-sm-4">
   <div class="form-group">
     <%= f.label :event, "Event(s)", class: 'control-label' %>
     <small>
@@ -154,18 +157,18 @@
  </div>
 </div>
 
-     <div class="col-sm-4">
-          <div class="form-group">
-        <%= f.label :brand, "Brand(s)", class: 'control-label' %>
-        <small>
-         <%= link_to brands_path, class: "", 'data-no-turbolink'=> true do %>
-         <span class="glyphicon glyphicon-cog"></span> Brand Manager
-         <% end %>
-       </small>
-       <%= f.select(:itembrands,options_from_collection_for_select(Brand.all, :id, :name, @item.brands.map {|j| j.id}), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
-     </div>
-  
-   </div>
+<div class="col-sm-4">
+  <div class="form-group">
+    <%= f.label :brand, "Brand(s)", class: 'control-label' %>
+    <small>
+     <%= link_to brands_path, class: "", 'data-no-turbolink'=> true do %>
+     <span class="glyphicon glyphicon-cog"></span> Brand Manager
+     <% end %>
+   </small>
+   <%= f.select(:itembrands,options_from_collection_for_select(Brand.all, :id, :name, @item.brands.map {|j| j.id}), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
+ </div>
+
+</div>
 
 
 </div>
@@ -174,36 +177,36 @@
 <div class="row">
 
   <div class="col-sm-4">
-  <div class="form-group">
-    <%= f.label :type, "Type(s)", class: 'control-label' %>
-    <small>
-     <%= link_to types_path, class: "", 'data-no-turbolink'=> true do %>
-     <span class="glyphicon glyphicon-cog"></span> Type Manager
-     <% end %>
-   </small>
-   <%= f.select(:itemtypes,options_from_collection_for_select(Type.all, :id, :name, @item.types.map {|j| j.id}), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
+    <div class="form-group">
+      <%= f.label :type, "Type(s)", class: 'control-label' %>
+      <small>
+       <%= link_to types_path, class: "", 'data-no-turbolink'=> true do %>
+       <span class="glyphicon glyphicon-cog"></span> Type Manager
+       <% end %>
+     </small>
+     <%= f.select(:itemtypes,options_from_collection_for_select(Type.all, :id, :name, @item.types.map {|j| j.id}), {:include_blank=>false},  required:true,multiple: true,:class=> "form-control"  )%>
+   </div>
  </div>
+
+
+
+ <div class="col-sm-4">
+  <div class="form-group">
+    <div class="field">
+      <%= f.label :notes , :class=>'control-label'%><br>
+      <%= f.text_area :notes, size: '50X20', :class=>'form-control input-md'  %>
+    </div>
+  </div>
 </div>
 
 
 
-  <div class="col-sm-4">
-    <div class="form-group">
-      <div class="field">
-        <%= f.label :notes , :class=>'control-label'%><br>
-        <%= f.text_area :notes, size: '50X20', :class=>'form-control input-md'  %>
-      </div>
-    </div>
+<div class="col-sm-4">
+  <div class="form-group">
+    <%= f.label :description , :class=>'control-label'%><br>
+    <%= f.text_area :description, size: '50X20', :class=>'form-control input-md'  %>
   </div>
-
-
-
-  <div class="col-sm-4">
-    <div class="form-group">
-      <%= f.label :description , :class=>'control-label'%><br>
-      <%= f.text_area :description, size: '50X20', :class=>'form-control input-md'  %>
-    </div>
-  </div>
+</div>
 </div>
 
 
