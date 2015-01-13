@@ -40,7 +40,7 @@
        <% brands = @items.map(&:brands).flatten.uniq %>
           
           <% brands.each do |brand| %>
-            <li role="presentation" class= "item" data-filter=".<%= brand.name %>">
+            <li role="presentation" class= "item" data-filter=".<%= brand.name.gsub(' ', '_') %>">
              <a role="menuitem" tabindex="-1" href="#"><%=  brand.name %> </a>
            </li>
           <% end %>
@@ -65,7 +65,7 @@
           <% events = @items.map(&:events).flatten.uniq %>
           
           <% events.each do |event| %>
-            <li role="presentation" class= "item" data-filter=".<%= event.name %>">
+            <li role="presentation" class= "item" data-filter=".<%= event.name.gsub(' ', '_') %>">
              <a role="menuitem" tabindex="-1" href="#"><%=  event.name %> </a>
            </li>
           <% end %>
@@ -86,7 +86,7 @@
           <% colors = @items.map(&:colors).flatten.uniq %>
           
           <% colors.each do |color| %>
-            <li role="presentation" class= "item" data-filter=".<%= color.name %>">
+            <li role="presentation" class= "item" data-filter=".<%= color.name.gsub(' ', '_') %>">
              <a role="menuitem" tabindex="-1" href="#"><%=  color.name %> </a>
            </li>
           <% end %>
@@ -108,7 +108,7 @@
           <% retailers = @items.map(&:retailers).flatten.uniq %>
           
           <% retailers.each do |retailer| %>
-            <li role="presentation" class= "item" data-filter=".<%= retailer.name %>">
+            <li role="presentation" class= "item" data-filter=".<%= retailer.name.gsub(' ', '_') %>">
              <a role="menuitem" tabindex="-1" href="#"><%=  retailer.name %> </a>
            </li>
           <% end %>
@@ -129,7 +129,7 @@
           <% types = @items.map(&:types).flatten.uniq %>
           
           <% types.each do |type| %>
-            <li role="presentation" class= "item" data-filter=".<%= type.name %>">
+            <li role="presentation" class= "item" data-filter=".<%= type.name.gsub(' ', '_') %>">
              <a role="menuitem" tabindex="-1" href="#"><%=  type.name %> </a>
            </li>
           <% end %>
@@ -150,15 +150,15 @@
       <% @items.each do |item| %>
       <% 
           klass = ''
-          klass<< item.colors.map(&:name).join(' ')
+          klass<< item.colors.map(&:name).map{|v| v.gsub(' ', '_')}.join(' ')
           klass<< ' '
-          klass<< item.retailers.map(&:name).join(' ')
+          klass<< item.retailers.map(&:name).map{|v| v.gsub(' ', '_')}.join(' ')
           klass<< ' '
-          klass<< item.brands.map(&:name).join(' ')
+          klass<< item.brands.map(&:name).map{|v| v.gsub(' ', '_')}.join(' ')
           klass<< ' '
-          klass<< item.events.map(&:name).join(' ')
+          klass<< item.events.map(&:name).map{|v| v.gsub(' ', '_')}.join(' ')
           klass<< ' '
-          klass<< item.types.map(&:name).join(' ')
+          klass<< item.types.map(&:name).map{|v| v.gsub(' ', '_')}.join(' ')
 
       %>
       <div class="closet_item <%= klass %>">
